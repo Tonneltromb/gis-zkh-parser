@@ -15,6 +15,12 @@ export class AppComponent {
   companies: any[] = [];
   selectedCompanyInfo: Object = {};
 
+  // загружаем субъекты
+  // загружаем города и области субъекта
+  // загружаем загружаем населенные пункты
+  // загружаем организации каждого населенного пункта
+  // todo: пагинация
+
   loadSubjects() {
     axios.get(this.baseUrl + this.subjectsPart)
       .then(response => {
