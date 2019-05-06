@@ -4,9 +4,10 @@
   <h3>Выбери субъект</h3>
   <select name="subjects"
           (change)="onSubjectSelected($event)">
+    <option value=" "></option>
     <option *ngFor="let s of subjects"
             [value]="s.href">
-      {{s.title}}
+      {{s.title}} {{s.count}}
     </option>
   </select>
 </div>
@@ -15,10 +16,44 @@
   <h3>Выбери район</h3>
   <select name="districts"
           (change)="onDistrictSelected($event)">
+    <option value=" "></option>
     <option *ngFor="let d of districts"
             [value]="d.href">
-      {{d.title}}
+      {{d.title}} {{d.count}}
     </option>
   </select>
 </div>
-
+<div *ngIf="cities.length">
+  <hr>
+  <h3>Выбери город</h3>
+  <select name="cities"
+          (change)="onCitySelected($event)">
+    <option value=" "></option>
+    <option *ngFor="let c of cities"
+            [value]="c.href">
+      {{c.title}} {{c.count}}
+    </option>
+  </select>
+</div>
+<div *ngIf="companies.length">
+  <hr>
+  <h3>Выбери компанию</h3>
+  <select name="companies" (change)="onCompanySelected($event)">
+    <option value=" "></option>
+    <option *ngFor="let c of companies"
+            [value]="c.href">
+      {{c.title}}
+    </option>
+  </select>
+</div>
+<hr>
+<h3>Руководитель: <span>{{selectedCompanyInfo['chief']}}</span></h3>
+<h3>Телефон: <span>{{selectedCompanyInfo['phone']}}</span></h3>
+<h3>E-mail: <span>{{selectedCompanyInfo['email']}}</span></h3>
+<h3>Сайт: <span>{{selectedCompanyInfo['site']}}</span></h3>
+<h3>ИНН: <span>{{selectedCompanyInfo['inn']}}</span></h3>
+<h3>ОГРН: <span>{{selectedCompanyInfo['ogrn']}}</span></h3>
+<h3>Адрес: <span>{{selectedCompanyInfo['address']}}</span></h3>
+<h3>Режим работы: <span>{{selectedCompanyInfo['workDays']}}</span></h3>
+<h3>Телефон диспетчера: <span>{{selectedCompanyInfo['dispatcherPhone']}}</span></h3>
+<h3>Тип компании: <span>{{selectedCompanyInfo['companyType']}}</span></h3>
