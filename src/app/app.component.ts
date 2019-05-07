@@ -4,6 +4,7 @@ import axios from 'axios';
 import * as XLSX from 'xlsx';
 
 class CompanyInfo {
+  title: string;
   chief: string;
   phone: string;
   email: string;
@@ -35,7 +36,6 @@ export class AppComponent {
   // загружаем загружаем населенные пункты
   // загружаем организации каждого населенного пункта
   // todo: пагинация
-  // todo: название компании
   // todo: разбить по субъектам
   // todo: возможно, стоит добавить для каждого населенного пункта заголовок
 
@@ -93,8 +93,10 @@ export class AppComponent {
       .then(response => {
         const page = document.createElement('html');
         page.innerHTML = response.data;
-        const info = page.querySelectorAll('.company-info__block .ank-text b');
         const resultObject: CompanyInfo = new CompanyInfo();
+        const title = page.querySelectorAll('.news-detail.ukrf-title-inner h3')[0].innerHTML;
+        resultObject.title = title;
+        const info = page.querySelectorAll('.company-info__block .ank-text b');
         const arr = Array.from(info);
         arr.forEach(e => {
           switch (e.innerHTML) {
